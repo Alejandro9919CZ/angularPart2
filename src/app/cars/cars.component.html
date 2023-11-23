@@ -1,0 +1,31 @@
+<h1>Cars component</h1>
+
+<p><strong>Forms and validation</strong></p>
+<div style="float: left">
+    <form #formCar="ngForm" (ngSubmit)="onSubmit(); formCar.reset()" style="width: 200px;">
+        <p>
+            <label>Name: </label>
+            <input type="text" name="carName" #carName="ngModel" [(ngModel)]="car.name" required>
+            <span *ngIf="carName.touched && !carName.valid">Incorrect name</span>
+        </p>
+        <p>
+            <label>Color(Number 0-9): </label>
+            <input type="text" name="color" #color="ngModel" [(ngModel)]="car.color" required pattern="[0-9]+">
+            <span *ngIf="color.touched && !color.valid">Incorrect color</span>
+        </p>
+        <input type="submit" value="Save" [disabled]="!formCar.form.valid">
+    </form>
+</div>
+<div style="float: left; margin-left: 30px">
+    <p>Cars list</p>
+    <ul>
+        <li *ngFor="let car of carsArray">Name: {{car.name}}, Color: {{car.color}}</li>
+    </ul>
+</div>
+<div style="margin-top: 180px">
+    <p>Comments list</p>
+    <ul *ngIf="comments">
+        <li *ngFor="let comment of comments">{{comment.id}} - {{comment.name}}</li>
+    </ul>
+    <span *ngIf="!comments">Loading list...</span>
+</div>

@@ -1,0 +1,8 @@
+<h1>{{title}}</h1>
+<p><strong>ngTemplate</strong></p>
+
+<button (click)="changeAdmin()">Change admin</button>
+<div *ngIf="admin; then trueAdmin else noAdmin"></div>
+<!-- <div *ngIf="!admin">You are not admin</div> -->
+<ng-template #trueAdmin>You are admin</ng-template>
+<ng-template #noAdmin>You are not admin</ng-template>
